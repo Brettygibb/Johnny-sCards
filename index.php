@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,4 +18,9 @@
     include 'includes/navbar.php';
 ?>
 </body>
+<footer>
+    <p>Johnny's Cards</p>
+    <p>123-456-7890</p>
+    <p>intellectual property of Brett Gibbons</p>
+</footer>
 </html>

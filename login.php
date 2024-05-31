@@ -12,10 +12,11 @@
         include 'includes/navbar.php';
     ?>
     <h1>Login</h1>
-    <form action="login_proc.php" method="post">
+    <form action="includes/login_proc.php" method="post">
         <input type="text" name="username" placeholder="Username">
         <input type="password" name="password" placeholder="Password">
         <button type="submit">Login</button>
     </form>
+    <a href="register.php">Don't have an account? Register here</a>
 </body>
 </html>
