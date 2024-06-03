@@ -7,16 +7,32 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    //need stored proc
-    $sql = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$password')";
+    $hashedPassword = password_hash($password,PASSWORD_DEFAULT);
 
-    if($conn->query($sql) === TRUE){
-        //change this to a message in the index
-        echo "User registered successfully";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+
+    $insertUser = "SELECT * FROM users where Email = ?";
+    $stmt = $conn->prepare($insertUser);
+    $stmt->bind_param("s",$email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if($result->num_rows > 0){
+        header("Location: ../register.php?error=email");
+    }else{
+        $sql = "INSERT INTO users(username,email,password) values(?,?,?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("sss",$username,$email,$hashedPassword);
+
+        if($stmt->execute()){
+            header("Location: ../index.php?success=AccountCreatedSuccessfully");
+
+        }
+        else{
+            header("Location: ../index.php?error=CouldNotBeCreated");
+
+        }
     }
+    $stmt->close();
     $conn->close();
-
-    header("index.php");
+    
 }
