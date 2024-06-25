@@ -1,0 +1,66 @@
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.card {
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  width: 200px;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card img {
+  border-radius: 10px;
+  max-width: 100%;
+  height: auto;
+}
+
+.card h2 {
+  font-size: 1.5em;
+  margin: 10px 0;
+}
+
+.card p {
+  font-size: 1.2em;
+  color: #555;
+}
+
+.card a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.card-detail {
+  text-align: center;
+  padding: 20px;
+}
+
+.card-detail img {
+  border-radius: 10px;
+  max-width: 300px;
+  height: auto;
+}
+
+.card-detail h1 {
+  font-size: 2em;
+  margin: 10px 0;
+}
+
+.card-detail p {
+  font-size: 1.2em;
+  color: #555;
+}
+
+.card-detail .price {
+  font-size: 1.5em;
+  color: #000;
+}
