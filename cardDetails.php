@@ -47,6 +47,7 @@ try{
         <?php if(!empty($card['image'])): ?>
             <img src="data:image/jpeg;base64,<?php echo base64_encode($card['image']); ?>" alt="<?php echo htmlspecialchars($card['name']); ?>">
         <?php else: ?>
+            <!-- add an image -->
             <img src="path/to/placeholder.jpg" alt="No image available">
         <?php endif; ?>
         <h1><?php echo htmlspecialchars($card['name']); ?></h1>
@@ -54,6 +55,11 @@ try{
         <p>$<?php echo htmlspecialchars($card['price']); ?></p>
         <p>Stock: <?php echo htmlspecialchars($card['stock']); ?></p>
         <p>Rarity: <?php echo htmlspecialchars($card['rarity']); ?></p>
+        <!-- Add a button to add the card to the cart -->
+        <form action="cart.php" method="post">
+            <input type="hidden" name="id" value="<?php echo $card['id']; ?>">
+            <input type="submit" value="Add to Cart">
+        </form>
     </div>
     
 </body>

@@ -4,7 +4,7 @@ include 'includes/connect.php';
 
 try {
     // Fetch all cards from the database
-    $query = "SELECT * FROM cards";
+    $query = "SELECT * FROM cards where category_id = 4";
     $result = $conn->query($query);
 
     // Check if any cards exist

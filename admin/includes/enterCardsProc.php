@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         // Bind parameters with correct data types
-        $stmtCard->bind_param("ssdiiiss", $name, $description, $price, $stock, $category_id, $set_id, $rarity, $image_content);
+        $stmtCard->bind_param("ssdiiisb", $name, $description, $price, $stock, $category_id, $set_id, $rarity, $image_content);
 
         // Send long data for image content
         $stmtCard->send_long_data(7, $image_content);
