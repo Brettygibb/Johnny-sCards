@@ -1,6 +1,12 @@
 <?php
 session_start();
 include 'includes/connect.php';
+
+if(isset($_GET['success'])){
+    if($_GET['success'] == "AccountCreatedSuccessfully"){
+        echo "<script>alert('Account created successfully')</script>";
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             header("Location: ../login.php?error=Invalid Username or Password");
         }
     } else {
-        header("Location: ../login.php?error=Invalid Username or Password");
+        header("Location: ../login.php?error=No User Found");
     }
     $stmt->close();
     $conn->close();

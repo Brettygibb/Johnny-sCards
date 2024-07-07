@@ -2,13 +2,13 @@
 session_start();
 include 'includes/connect.php';
 
-if(!isset($_GET['id'])) {
+if (!isset($_GET['id'])) {
     header('Location: pokemon.php');
     exit;
 }
-$cardId = $_GET['id'];
+$cardId = intval($_GET['id']);
 
-try{
+try {
     // Fetch the card from the database
     $query = "SELECT * FROM cards WHERE id = ?";
     $stmt = $conn->prepare($query);
@@ -17,7 +17,7 @@ try{
     $result = $stmt->get_result();
 
     // Check if the card exists
-    if($result->num_rows > 0) {
+    if ($result->num_rows > 0) {
         $card = $result->fetch_assoc();
     } else {
         $card = null;
@@ -44,22 +44,25 @@ try{
 <body>
     <?php include 'includes/navbar.php'; ?>
     <div class="card-detail">
-        <?php if(!empty($card['image'])): ?>
-            <img src="data:image/jpeg;base64,<?php echo base64_encode($card['image']); ?>" alt="<?php echo htmlspecialchars($card['name']); ?>">
+        <?php if ($card): ?>
+            <?php if (!empty($card['image'])): ?>
+                <img src="data:image/jpeg;base64,<?php echo base64_encode($card['image']); ?>" alt="<?php echo htmlspecialchars($card['name']); ?>">
+            <?php else: ?>
+                <img src="path/to/placeholder.jpg" alt="No image available">
+            <?php endif; ?>
+            <h1><?php echo htmlspecialchars($card['name']); ?></h1>
+            <p><?php echo htmlspecialchars($card['description']); ?></p>
+            <p>$<?php echo htmlspecialchars($card['price']); ?></p>
+            <p>Stock: <?php echo htmlspecialchars($card['stock']); ?></p>
+            <p>Rarity: <?php echo htmlspecialchars($card['rarity']); ?></p>
+            <!-- Add a button to add the card to the cart -->
+            <form action="addToCart.php" method="get">
+                <input type="hidden" name="id" value="<?php echo $card['id']; ?>">
+                <input type="submit" value="Add to Cart">
+            </form>
         <?php else: ?>
-            <!-- add an image -->
-            <img src="path/to/placeholder.jpg" alt="No image available">
+            <p>Card not found.</p>
         <?php endif; ?>
-        <h1><?php echo htmlspecialchars($card['name']); ?></h1>
-        <p><?php echo htmlspecialchars($card['description']); ?></p>
-        <p>$<?php echo htmlspecialchars($card['price']); ?></p>
-        <p>Stock: <?php echo htmlspecialchars($card['stock']); ?></p>
-        <p>Rarity: <?php echo htmlspecialchars($card['rarity']); ?></p>
-        <!-- Add a button to add the card to the cart -->
-        <form action="cart.php" method="post">
-            <input type="hidden" name="id" value="<?php echo $card['id']; ?>">
-            <input type="submit" value="Add to Cart">
-        </form>
     </div>
     
 </body>

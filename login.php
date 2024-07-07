@@ -1,3 +1,17 @@
+<?php
+if(isset($_GET['error'])){
+    if($_GET['error'] == "NoLoginForCart"){
+        echo "<script>alert('You must login to add items to your cart.')</script>";
+    }
+    if($_GET['error']=='Invalid Username or Password'){
+        echo "<script>alert('Invalid Username or Password')</script>";
+    }
+    if($_GET['error']=='No User Found'){
+        echo "<script>alert('No User Found')</script>";
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

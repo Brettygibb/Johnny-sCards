@@ -1,3 +1,14 @@
+<?php 
+if(isset($_GET['error'])){
+    if($_GET['error'] == "email"){
+        echo "<script>alert('Email already exists')</script>";
+    }
+    if($_GET['error'] == "CouldNotBeCreated"){
+        echo "<script>alert('Account could not be created')</script>";
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
