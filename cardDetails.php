@@ -2,8 +2,23 @@
 session_start();
 include 'includes/connect.php';
 
+if(isset($_GET['error'])){
+   if($_GET['error'] == "Not enough stock available"){
+       echo "<script>alert('Not enough stock available')</script>";
+   }
+    if($_GET['error'] == "You must login to add items to your cart."){
+         echo "<script>alert('You must login to add items to your cart.')</script>";
+    }
+}
+
+if(isset($_GET['success'])){
+    if($_GET['success'] == "Card added to cart."){
+        echo "<script>alert('Card added to cart.')</script>";
+    }
+}
+
 if (!isset($_GET['id'])) {
-    header('Location: pokemon.php');
+    
     exit;
 }
 $cardId = intval($_GET['id']);
